@@ -1,0 +1,44 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+
+# Recovery payloads and live-state artifacts must never enter this repository.
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-wal
+*.sqlite-shm
+*.jsonl
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+recovery-output/
+cutover-backups/
+cutover-work/
+destination-before/
+offline-codex-restore/
+sessions/
+archived_sessions/
+attachments/
+
+# Credential and device-state stores.
+.env
+.env.*
+auth.json
+credentials.json
+Cookies
+Cookies-journal
+Login Data
+Web Data
+.codex-global-state.json
+.codex-global-state.json.*
+*.p12
+*.pfx
+*.mobileprovision
+id_rsa
+id_ed25519

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Migration Recovery"
+  short_description: "Safely stage and verify Codex migrations"
+  default_prompt: "Use $codex-migration-recovery to plan and verify a staged local Codex migration without copying credentials."
