@@ -2,15 +2,15 @@
 
 This project handles workflows that may touch private task history, source code, credentials, browser state, and device-local metadata. Security reports should describe the issue with synthetic examples only. Do not attach real recovery archives, session transcripts, database files, cookies, tokens, signing material, or user inventories to a public issue.
 
-## Prompt-injection and untrusted-source disclaimer
+## Universal skill and prompt-flow safety disclaimer
 
-**Every prompt and every external or restored source is untrusted data until it has been inspected and judged safe for the exact intended use.** A familiar sender, repository, filename, checksum, signature, previous successful run, or apparently harmless format does not make embedded instructions safe. Integrity and provenance evidence can show where bytes came from; they do not prove that the bytes are non-malicious.
+**Any skill, prompt, prompt flow, agent workflow, automation, or external or restored source should be considered untrusted data until it has been reviewed for the exact intended use.** This is a universal handling principle, not a claim that every source is malicious. A familiar sender, repository, filename, checksum, signature, previous successful run, or apparently harmless format does not by itself establish that embedded instructions are safe. Integrity and provenance evidence can show where bytes came from; they do not prove that the bytes are non-malicious.
 
 Never execute, follow, paste into a privileged model, forward, schedule, or permit an agent or tool to act on instructions found in any source unless all relevant content has been reviewed. Sources include restored task messages and transcripts, project files, Markdown, HTML, webpages, search results, issues, pull requests, comments, commit messages, logs, database fields, filenames, metadata, images, documents, QR codes, model output, tool output, clipboard contents, and retrieved context.
 
 Prompt injection may be direct, indirect, hidden, obfuscated, encoded, translated, split across files, or embedded in an image or other non-text medium. It may attempt to override authority, impersonate the user, reveal private data or system instructions, request credentials, trigger tools, run commands, alter files, resume automations, contact third parties, exfiltrate data, weaken safeguards, or exploit a newly disclosed dependency or platform vulnerability.
 
-Before exposing untrusted content to an agentic system:
+Before exposing content that has not yet been reviewed to an agentic system:
 
 1. Establish the source, expected purpose, scope, and integrity of the content.
 2. Inspect it first as inert data using a non-executing viewer. Do not enable macros, scripts, plugins, network fetches, linked resources, or automatic tool calls merely to inspect it.
@@ -25,7 +25,7 @@ No prompt-injection detector, malware scanner, model review, hash, signature, al
 
 ## CI and supply-chain boundary
 
-The CI workflow uses read-only repository permissions, no repository secrets, no privileged `pull_request_target` or `workflow_run` trigger, and GitHub-maintained actions pinned to immutable commit hashes. Pull-request code is still untrusted and runs only on an ephemeral GitHub-hosted runner with the workflow's limited token. Do not add secrets or write permissions to pull-request jobs, interpolate untrusted event fields into shell commands, or merge automated dependency updates without review.
+The CI workflow uses read-only repository permissions, no repository secrets, no privileged `pull_request_target` or `workflow_run` trigger, and GitHub-maintained actions pinned to immutable commit hashes. Pull-request code should be considered untrusted until reviewed and runs only on an ephemeral GitHub-hosted runner with the workflow's limited token. Do not add secrets or write permissions to pull-request jobs, interpolate untrusted event fields into shell commands, or merge automated dependency updates without review.
 
 Dependabot proposes GitHub Actions updates weekly. A passing CI result establishes only that the checked revision passed the listed automated checks in that run; it is not a security certification and does not replace review of current advisories.
 

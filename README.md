@@ -5,7 +5,7 @@ A reusable Codex skill for evidence-backed migration of local Codex tasks, proje
 The repository packages the workflow—not anybody's recovery data. It deliberately contains no task transcripts, session databases, Drive inventories, authentication stores, device identifiers, private project IDs, absolute user paths, or one-machine cutover scripts.
 
 > [!CAUTION]
-> **Treat every prompt and every external or restored source as untrusted data.** Inspect content inertly before giving it to an AI model or tool. Never execute, follow, paste, forward, schedule, or let an agent act on instructions found in a task, transcript, file, webpage, issue, comment, log, image, metadata field, model output, or other source unless its provenance, purpose, and contents have been reviewed and it is safe for the exact intended use. Prompt injection can be direct, indirect, hidden, encoded, or multimodal. If safety is uncertain, do not run it. See [SECURITY.md](SECURITY.md).
+> **Universal skill and prompt-flow disclaimer:** Any skill, prompt, prompt flow, agent workflow, automation, or external or restored source should be considered untrusted data until reviewed for the exact intended use. Inspect content inertly before giving it to an AI model or tool. Never execute, follow, paste, forward, schedule, or let an agent act on embedded instructions unless their provenance, purpose, contents, permissions, and proposed effects have been reviewed. Prompt injection can be direct, indirect, hidden, encoded, or multimodal. If safety is uncertain, do not run it. See [SECURITY.md](SECURITY.md).
 
 ## What it covers
 

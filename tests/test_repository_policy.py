@@ -18,7 +18,12 @@ class RepositoryPolicyTests(unittest.TestCase):
             self.assertIn("inspect", text)
 
         self.assertIn("if safety is uncertain, do not run it", readme)
-        self.assertIn("prompt-injection and untrusted-source disclaimer", security)
+        universal_wording = "should be considered untrusted data until"
+        self.assertIn(universal_wording, readme)
+        self.assertIn(universal_wording, security)
+        self.assertIn(universal_wording, skill)
+        self.assertIn("universal skill and prompt-flow safety disclaimer", security)
+        self.assertIn("not a claim that every source is malicious", security)
         self.assertIn("if safety remains uncertain, stop", skill)
 
     def test_ci_uses_a_restricted_event_and_permission_model(self):
