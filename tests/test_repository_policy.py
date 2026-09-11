@@ -62,6 +62,22 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.assertNotIn("thread_id", provenance_text.lower())
         self.assertNotIn("session_id", provenance_text.lower())
 
+    def test_installation_guidance_requires_review(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        normalized_readme = " ".join(readme.split())
+
+        self.assertIn("Install with Codex's built-in skill installer", readme)
+        self.assertIn("Install manually with Git", readme)
+        self.assertIn("Prompt an agent to inspect and install it", readme)
+        self.assertIn("--repo reycarrorg/codex-migration-recovery", readme)
+        self.assertIn("--path .", readme)
+        self.assertIn("--name codex-migration-recovery", readme)
+        self.assertIn("git rev-parse HEAD", readme)
+        self.assertIn("pull --ff-only", readme)
+        self.assertIn("untrusted data until reviewed", readme)
+        self.assertIn("Do not overwrite an existing destination", normalized_readme)
+        self.assertIn("If anything is suspicious or uncertain, do not install it", readme)
+
 
 if __name__ == "__main__":
     unittest.main()
