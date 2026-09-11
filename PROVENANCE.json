@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "date": "2026-09-11",
+      "stage": "design-implementation-and-final-local-validation",
+      "application": {
+        "name": "Codex Desktop",
+        "version": "26.908.40401",
+        "build": "8837",
+        "observation_scope": "final authoring and validation pass"
+      },
+      "session_runtime": {
+        "provider": "openai",
+        "recorded_model_request": "gpt-5.6-sol",
+        "recorded_reasoning_effort": "xhigh",
+        "session_start_codex_cli": "0.154.0-alpha.6.1",
+        "backend_weights_independently_verified": false
+      },
+      "final_bundle_readback": {
+        "codex_cli": "0.154.0-alpha.6.2"
+      },
+      "local_test_host": {
+        "operating_system": "macOS 27.0",
+        "operating_system_build": "26A428",
+        "architecture": "arm64",
+        "python_runtimes": [
+          "3.9.6",
+          "3.12.14"
+        ]
+      },
+      "local_checks": {
+        "unit_and_repository_policy_tests": "passed",
+        "sensitive_material_scan": "passed with zero findings",
+        "hash_manifest_round_trip": "passed",
+        "license_source_comparison": "passed"
+      }
+    },
+    {
+      "date": "2026-09-11",
+      "stage": "initial-public-github-ci",
+      "environment": "GitHub-hosted Ubuntu runners",
+      "python_versions": [
+        "3.9",
+        "3.12",
+        "3.14"
+      ],
+      "result": "passed",
+      "workflow_url": "https://github.com/reycarrorg/codex-migration-recovery/actions/workflows/ci.yml",
+      "initial_publication_run_url": "https://github.com/reycarrorg/codex-migration-recovery/actions/runs/34630000491"
+    }
+  ],
+  "interpretation_limits": [
+    "Model and reasoning values are recorded request metadata, not independent proof of backend weights.",
+    "A passing test record applies only to the exact revision and environments tested.",
+    "This historical record is not a minimum-version requirement, security certification, or promise of compatibility with future Codex schemas."
+  ]
+}

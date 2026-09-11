@@ -34,6 +34,7 @@ assets/templates/FINAL_HANDOFF.md
 tests/test_recovery_audit.py
 LICENSE.md
 NOTICE
+PROVENANCE.json
 .github/workflows/ci.yml
 .github/dependabot.yml
 ```
@@ -60,6 +61,19 @@ Hash manifests must be written outside the tree being sealed. The helper refuses
 Continuous integration (CI) means GitHub automatically checks each push and pull request. This repository's CI compiles the Python sources, runs the unit and repository-policy tests on Python 3.9, 3.12, and 3.14, scans for sensitive material, and verifies a fresh hash-manifest round trip.
 
 The workflow has read-only repository permissions, does not receive project secrets, disables persisted checkout credentials, and pins GitHub-maintained actions to full commit hashes. Dependabot checks those action references weekly, but every proposed update still requires human review before merge.
+
+## Design and test provenance
+
+This skill was designed, implemented, and locally validated in the following recorded environment. These entries are historical reference data, not minimum requirements or a security certification.
+
+| Date | Stage | Application or host | Model request | Reasoning | Verification |
+| --- | --- | --- | --- | --- | --- |
+| 2026-09-11 | Design, implementation, and final local validation | Codex Desktop `26.908.40401` (build `8837`); session-start Codex CLI `0.154.0-alpha.6.1`; final bundled CLI readback `0.154.0-alpha.6.2` | `gpt-5.6-sol` | `xhigh` | Local unit and policy tests, sensitive-material scan, hash-manifest round trip, and license comparison passed on macOS 27.0 build `26A428`, Apple silicon, with Python 3.9.6 and bundled Python 3.12.14 |
+| 2026-09-11 | Initial public CI | GitHub-hosted Ubuntu runners | Not applicable | Not applicable | [CI passed](https://github.com/reycarrorg/codex-migration-recovery/actions/runs/34630000491) on Python 3.9, 3.12, and 3.14 |
+
+The model and reasoning values are the request metadata recorded by the Codex Desktop task used for the authoring work. They do not independently prove the backend weights that served the request. A passing result applies only to the exact revision and environments tested; it does not prove compatibility with future Codex clients, schemas, models, dependencies, or operating systems.
+
+The same sanitized record is available as machine-readable [provenance data](PROVENANCE.json). It intentionally excludes task identifiers, account data, machine identifiers, private paths, and credentials.
 
 ## License
 

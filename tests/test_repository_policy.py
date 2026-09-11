@@ -1,3 +1,4 @@
+import json
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,31 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.assertNotIn("pull_request_target", workflow)
         self.assertNotIn("workflow_run", workflow)
         self.assertNotIn("secrets.", workflow)
+
+    def test_public_provenance_is_present_and_sanitized(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        provenance_text = (ROOT / "PROVENANCE.json").read_text(encoding="utf-8")
+        provenance = json.loads(provenance_text)
+
+        self.assertIn("Design and test provenance", readme)
+        self.assertIn("gpt-5.6-sol", readme)
+        self.assertIn("xhigh", readme)
+        self.assertEqual(provenance["schema_version"], 1)
+        self.assertEqual(
+            provenance["records"][0]["session_runtime"]["recorded_model_request"],
+            "gpt-5.6-sol",
+        )
+        self.assertEqual(
+            provenance["records"][0]["session_runtime"][
+                "recorded_reasoning_effort"
+            ],
+            "xhigh",
+        )
+
+        self.assertNotIn("/Users/", provenance_text)
+        self.assertNotIn("@", provenance_text)
+        self.assertNotIn("thread_id", provenance_text.lower())
+        self.assertNotIn("session_id", provenance_text.lower())
 
 
 if __name__ == "__main__":
