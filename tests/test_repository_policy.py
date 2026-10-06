@@ -7,19 +7,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class RepositoryPolicyTests(unittest.TestCase):
-    def test_prompt_injection_warning_is_prominent(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8").lower()
+    def test_execution_security_guidance_remains_in_policy_files(self):
         security = (ROOT / "SECURITY.md").read_text(encoding="utf-8").lower()
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8").lower()
 
-        for text in (readme, security, skill):
+        for text in (security, skill):
             self.assertIn("prompt", text)
             self.assertIn("untrusted", text)
             self.assertIn("inspect", text)
 
-        self.assertIn("if safety is uncertain, do not run it", readme)
         universal_wording = "should be considered untrusted data until"
-        self.assertIn(universal_wording, readme)
         self.assertIn(universal_wording, security)
         self.assertIn(universal_wording, skill)
         self.assertIn("universal skill and prompt-flow safety disclaimer", security)
@@ -62,21 +59,23 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.assertNotIn("thread_id", provenance_text.lower())
         self.assertNotIn("session_id", provenance_text.lower())
 
-    def test_installation_guidance_requires_review(self):
+    def test_installation_guidance_targets_the_canonical_collection(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         normalized_readme = " ".join(readme.split())
 
         self.assertIn("Install with Codex's built-in skill installer", readme)
         self.assertIn("Install manually with Git", readme)
-        self.assertIn("Prompt an agent to inspect and install it", readme)
-        self.assertIn("--repo reycarrorg/codex-migration-recovery", readme)
-        self.assertIn("--path .", readme)
+        self.assertIn("Prompt an agent to install it", readme)
+        self.assertIn("--repo reycarrorg/skills", readme)
+        self.assertIn("--path skills/codex-migration-recovery", readme)
         self.assertIn("--name codex-migration-recovery", readme)
         self.assertIn("git rev-parse HEAD", readme)
         self.assertIn("pull --ff-only", readme)
-        self.assertIn("untrusted data until reviewed", readme)
         self.assertIn("Do not overwrite an existing destination", normalized_readme)
-        self.assertIn("If anything is suspicious or uncertain, do not install it", readme)
+        self.assertIn("https://github.com/reycarrorg/skills/tree/main/skills/codex-migration-recovery", readme)
+        self.assertNotIn("--repo reycarrorg/codex-migration-recovery", readme)
+        self.assertNotIn("prompt injection", readme.lower())
+        self.assertNotIn("universal skill and prompt-flow disclaimer", readme.lower())
 
 
 if __name__ == "__main__":
